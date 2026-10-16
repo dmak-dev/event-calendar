@@ -1,0 +1,110 @@
+/* Базовая тема в стиле TodoList: фон, типографика и минимальные отступы. */
+body {
+  background-color: #c0f0c0;
+  color: #000000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h1 { text-align: center; margin-bottom: 16px; }
+
+/* Сообщение о неудачном запросе к API. */
+.error {
+  background: #ffe3e3;
+  border: 1px solid #d9534f;
+  color: #a12b26;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+
+/* Компактная форма: поля ввода + кнопка действия. */
+.event-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto 2fr auto;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.event-form input, .event-form button { padding: 8px; font-size: 14px; }
+.event-form button {
+  background: #007bff; color: #fff; border: none; border-radius: 6px; cursor: pointer;
+}
+
+/* Узкий экран: поля формы идут в столбик вместо одной строки. */
+@media (max-width: 700px) {
+  .event-form { grid-template-columns: 1fr; }
+}
+
+/* Строка времени с маленькой кнопкой "Сейчас". */
+.time-row { display: inline-flex; gap: 6px; align-items: center; }
+.tiny { padding: 4px 8px; font-size: 12px; background: #007bff; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+
+/* Список событий, сгруппированный по датам. */
+.empty { text-align: center; color: #333; margin-top: 12px; }
+.day-block { background: #ffffff; border-radius: 6px; padding: 12px; margin-bottom: 12px; }
+.day-title { margin: 0 0 8px 0; color: #333; }
+.day-list { list-style: none; margin: 0; padding: 0; }
+.event-item { padding: 8px 0; border-top: 1px solid #e5e7eb; }
+.event-item:first-child { border-top: none; }
+
+.event-line { display: flex; gap: 8px; align-items: baseline; }
+.event-time { color: #007bff; min-width: 44px; }
+.event-title { font-weight: 600; }
+
+.event-desc { color: #444; margin: 4px 0 6px; }
+.event-actions { display: flex; gap: 8px; }
+.event-actions button {
+  padding: 6px 10px; background: #007bff; color: #fff; border: none; border-radius: 6px; cursor: pointer;
+}
+.event-actions .danger { background: #d9534f; }
+
+/* Простые модальные окна без эффекта анимации. */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: grid; place-items: center; z-index: 1000; }
+.modal { width: 420px; max-width: 92vw; background: #fff; padding: 16px; border-radius: 8px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+.modal .danger { background: #d9534f; color: #fff; border: none; padding: 8px 12px; border-radius: 6px; }
+
+/* Переключатель режимов и навигация по месяцам. */
+.views {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  justify-content: space-between; margin-bottom: 12px;
+}
+.view-switch { display: inline-flex; gap: 6px; }
+.view-switch button {
+  padding: 6px 14px; font-size: 13px; cursor: pointer;
+  background: #fff; color: #007bff; border: 1px solid #007bff; border-radius: 999px;
+}
+.view-switch button.active { background: #007bff; color: #fff; }
+.cal-nav { display: inline-flex; gap: 6px; align-items: center; }
+.cal-month { font-weight: 600; min-width: 150px; text-align: center; text-transform: capitalize; }
+
+/* Сетка месяца. */
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.cal-weekday { text-align: center; font-size: 12px; font-weight: 600; color: #555; }
+.cal-cell {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 6px;
+  min-height: 96px; padding: 6px; display: flex; flex-direction: column; gap: 4px;
+  cursor: pointer; overflow: hidden;
+}
+.cal-cell.out { background: #eef7ee; }
+.cal-cell.out .cal-day-num { color: #9aa79a; }
+.cal-cell.today { border-color: #007bff; box-shadow: inset 0 0 0 1px #007bff; }
+.cal-day-num { font-size: 12px; color: #444; }
+.cal-event {
+  font-size: 11px; line-height: 1.4; text-align: left; cursor: pointer;
+  padding: 2px 5px; border: none; border-radius: 4px;
+  background: #e8f0ff; color: #1a3fa0; font-family: inherit;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cal-event:hover { background: #d6e4ff; }
+.cal-event-time { font-weight: 600; }
+
+/* Узкий экран: сетка плотнее, форма в столбик. */
+@media (max-width: 700px) {
+  .cal-grid { gap: 3px; }
+  .cal-cell { min-height: 64px; padding: 3px; }
+  .cal-event { font-size: 10px; }
+  .cal-month { min-width: 110px; }
+}

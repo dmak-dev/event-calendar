@@ -1,0 +1,26 @@
+# Зависимости
+node_modules/
+
+# Сборка клиента
+dist/
+.vite/
+
+# Переменные окружения
+.env
+.env.local
+.env.*.local
+
+# Служебные файлы SQLite (сам events.db в репозитории нужен)
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Логи и системный мусор
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Редакторы
+.idea/
+*.swp
